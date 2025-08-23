@@ -104,6 +104,43 @@ Sekme["1"].BackgroundTransparency = 0.1
 Sekme["1"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
 Sekme["1"].Visible = false
 
+local thumbail = Instance.new("ImageLabel", Sekme["1"]);
+thumbail["BorderSizePixel"] = 0;
+thumbail["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+thumbail["Image"] = [[rbxasset://textures/ui/GuiImagePlaceholder.png]];
+thumbail["Size"] = UDim2.new(0, 120, 0, 120);
+thumbail["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+thumbail["BackgroundTransparency"] = 1;
+thumbail["Position"] = UDim2.new(0.04317, 0, 0.05865, 0);
+
+local thumbaildisplayname = Instance.new("TextLabel", Sekme["1"]);
+thumbaildisplayname["BorderSizePixel"] = 0;
+thumbaildisplayname["TextSize"] = 14;
+thumbaildisplayname["TextXAlignment"] = Enum.TextXAlignment.Left;
+thumbaildisplayname["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+thumbaildisplayname["FontFace"] = Font.new([[rbxassetid://11322590111]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+thumbaildisplayname["TextColor3"] = Color3.fromRGB(255, 255, 255);
+thumbaildisplayname["BackgroundTransparency"] = 1;
+thumbaildisplayname["Size"] = UDim2.new(0, 173, 0, 22);
+thumbaildisplayname["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+thumbaildisplayname["Name"] = "displayname";
+thumbaildisplayname["Position"] = UDim2.new(0.30216, 0, 0.09971, 0);
+
+
+-- ServerStorage.test.Main.ana-sayfa.name
+local thumbailname = Instance.new("TextLabel", Sekme["1"]);
+thumbailname["BorderSizePixel"] = 0;
+thumbailname["TextSize"] = 14;
+thumbailname["TextXAlignment"] = Enum.TextXAlignment.Left;
+thumbailname["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+thumbailname["FontFace"] = Font.new([[rbxassetid://11322590111]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+thumbailname["TextColor3"] = Color3.fromRGB(255, 255, 255);
+thumbailname["BackgroundTransparency"] = 1;
+thumbailname["Size"] = UDim2.new(0, 173, 0, 22);
+thumbailname["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+thumbailname["Name"] = "name";
+thumbailname["Position"] = UDim2.new(0.30216, 0, 0.20235, 0);
+
 Sekme["2"] = Instance.new("Frame", G2L["2"])
 Sekme["2"].BorderSizePixel = 0
 Sekme["2"].Name = "local"
@@ -111,6 +148,29 @@ Sekme["2"].Size = UDim2.new(1,1,1)
 Sekme["2"].BackgroundTransparency = 0.1
 Sekme["2"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
 Sekme["2"].Visible = false
+
+local Players = game:GetService("Players")
+local PlayersGui = Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local imageLabel = Sekme["1"].ImageLabel
+local displayname = Sekme["1"].displayname
+local name = Sekme["1"].name
+
+local PlayersService = game:GetService("Players")
+
+local player = Players.LocalPlayer
+local thumbnailType = Enum.ThumbnailType.HeadShot
+local thumbnailSize = Enum.ThumbnailSize.Size420x420
+
+local content, isReady = PlayersService:GetUserThumbnailAsync(
+	player.UserId,
+	thumbnailType,
+	thumbnailSize
+)
+
+imageLabel.Image = content
+name.Text = player.Name
+displayname.Text = player.DisplayName
 
 local function makeDraggable(frame)
 	local dragToggle, dragStart, startPos
