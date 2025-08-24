@@ -200,13 +200,14 @@ local function tus1ekle(parent, labelText, boxPlaceholder)
 	if not containerFrame then
 		containerFrame = Instance.new("Frame")
 		containerFrame.Name = "Tus1Container"
-		containerFrame.Size = UDim2.new(0, 260, 0, 25)
+		containerFrame.Size = UDim2.new(0, 310, 0, 25)
 		containerFrame.BackgroundTransparency = 1
 		containerFrame.Parent = parent
 	end
 
 	local label = containerFrame:FindFirstChild("tus1Label")
 	local box = containerFrame:FindFirstChild("tus1Box")
+	local button = containerFrame:FindFirstChild("tus1Button")
 
 	if not label then
 		label = Instance.new("TextLabel")
@@ -230,20 +231,21 @@ local function tus1ekle(parent, labelText, boxPlaceholder)
 		box.Parent = containerFrame
 	end
 
+	if not button then
+		button = Instance.new("TextButton")
+		button.Name = "tus1Button"
+		button.Text = "Uygula"
+		button.Size = UDim2.new(0, 50, 0, 25)
+		button.Position = UDim2.new(0, 265, 0, 0)
+		button.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+		button.TextColor3 = Color3.fromRGB(255, 255, 255)
+		button.Parent = containerFrame
+	end
+
 	label.Text = labelText or "Label"
 	box.PlaceholderText = boxPlaceholder or "Buraya yaz..."
 
-	task.spawn(function()
-		while box.Parent do
-			local char = player.Character
-			if char and char:FindFirstChild("Humanoid") and not box:IsFocused() then
-				box.PlaceholderText = tostring(char.Humanoid.WalkSpeed)
-			end
-			task.wait(0.2)
-		end
-	end)
-
-	box.FocusLost:Connect(function(enterPressed)
+	local function applyValue()
 		local char = player.Character
 		if char and char:FindFirstChild("Humanoid") then
 			local val = tonumber(box.Text)
@@ -252,6 +254,22 @@ local function tus1ekle(parent, labelText, boxPlaceholder)
 			else
 				box.PlaceholderText = tostring(char.Humanoid.WalkSpeed)
 			end
+		end
+	end
+
+	button.MouseButton1Click:Connect(applyValue)
+	
+	box.FocusLost:Connect(function()
+		-- nothing
+	end)
+
+	task.spawn(function()
+		while box.Parent do
+			local char = player.Character
+			if char and char:FindFirstChild("Humanoid") and not box:IsFocused() then
+				box.PlaceholderText = tostring(char.Humanoid.WalkSpeed)
+			end
+			task.wait(0.2)
 		end
 	end)
 
@@ -264,13 +282,14 @@ local function tus2ekle(parent, labelText, boxPlaceholder)
 	if not containerFrame then
 		containerFrame = Instance.new("Frame")
 		containerFrame.Name = "Tus2Container"
-		containerFrame.Size = UDim2.new(0, 260, 0, 25)
+		containerFrame.Size = UDim2.new(0, 310, 0, 25)
 		containerFrame.BackgroundTransparency = 1
 		containerFrame.Parent = parent
 	end
 
 	local label = containerFrame:FindFirstChild("tus2Label")
 	local box = containerFrame:FindFirstChild("tus2Box")
+	local button = containerFrame:FindFirstChild("tus2Button")
 
 	if not label then
 		label = Instance.new("TextLabel")
@@ -294,20 +313,21 @@ local function tus2ekle(parent, labelText, boxPlaceholder)
 		box.Parent = containerFrame
 	end
 
+	if not button then
+		button = Instance.new("TextButton")
+		button.Name = "tus2Button"
+		button.Text = "Uygula"
+		button.Size = UDim2.new(0, 50, 0, 25)
+		button.Position = UDim2.new(0, 265, 0, 0)
+		button.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+		button.TextColor3 = Color3.fromRGB(255, 255, 255)
+		button.Parent = containerFrame
+	end
+
 	label.Text = labelText or "Label"
 	box.PlaceholderText = boxPlaceholder or "Buraya yaz..."
 
-	task.spawn(function()
-		while box.Parent do
-			local char = player.Character
-			if char and char:FindFirstChild("Humanoid") and not box:IsFocused() then
-				box.PlaceholderText = tostring(char.Humanoid.JumpPower)
-			end
-			task.wait(0.2)
-		end
-	end)
-
-	box.FocusLost:Connect(function(enterPressed)
+	local function applyValue()
 		local char = player.Character
 		if char and char:FindFirstChild("Humanoid") then
 			local val = tonumber(box.Text)
@@ -316,6 +336,22 @@ local function tus2ekle(parent, labelText, boxPlaceholder)
 			else
 				box.PlaceholderText = tostring(char.Humanoid.JumpPower)
 			end
+		end
+	end
+
+	button.MouseButton1Click:Connect(applyValue)
+	
+	box.FocusLost:Connect(function()
+		-- nothing
+	end)
+
+	task.spawn(function()
+		while box.Parent do
+			local char = player.Character
+			if char and char:FindFirstChild("Humanoid") and not box:IsFocused() then
+				box.PlaceholderText = tostring(char.Humanoid.JumpPower)
+			end
+			task.wait(0.2)
 		end
 	end)
 
