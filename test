@@ -6,7 +6,6 @@ local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
--- Check if the GUI already exists
 local PlayersGui = LocalPlayer:WaitForChild("PlayerGui")
 local guiExists = PlayersGui:FindFirstChild("npcgui")
 
@@ -94,7 +93,45 @@ if not guiExists then
 	G2L["9"].TextColor3 = Color3.fromRGB(0,0,0)
 	G2L["9"].BackgroundTransparency = 0.2
 	G2L["9"].Position = UDim2.new(0.15,0,0.1,0)
-
+	
+	G2L["wow"] = Instance.new("Frame", G2L["2"]);
+	G2L["wow"]["BorderSizePixel"] = 0;
+	G2L["wow"]["BackgroundColor3"] = Color3.fromRGB(62, 62, 62);
+	G2L["wow"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
+	G2L["wow"]["Size"] = UDim2.new(0, 95, 0, 30);
+	G2L["wow"]["Position"] = UDim2.new(0.91149, 0, -0.06274, 0);
+	G2L["wow"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+	G2L["wow"]["Name"] = [[wow]];
+	G2L["wow"]["BackgroundTransparency"] = 1;
+	
+	G2L["kucult"] = Instance.new("TextButton", G2L["wow"]);
+	G2L["kucult"]["BorderSizePixel"] = 0;
+	G2L["kucult"]["TextSize"] = 14;
+	G2L["kucult"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+	G2L["kucult"]["BackgroundColor3"] = Color3.fromRGB(62, 62, 62);
+	G2L["kucult"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+	G2L["kucult"]["BackgroundTransparency"] = 0.2;
+	G2L["kucult"]["Size"] = UDim2.new(0, 40, 1, 0);
+	G2L["kucult"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+	G2L["kucult"]["Text"] = [[-]];
+	G2L["kucult"]["Name"] = [[kucult]];
+	G2L["kucult"]["Position"] = UDim2.new(0.23043, 0, 0.15, 0);
+	G2L["kucult"]["Position"] = UDim2.new(0.08307, 0, -0.01667, 0);
+	
+	G2L["kapat"] = Instance.new("TextButton", G2L["wow"]);
+	G2L["kapat"]["BorderSizePixel"] = 0;
+	G2L["kapat"]["TextSize"] = 14;
+	G2L["kapat"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+	G2L["kapat"]["BackgroundColor3"] = Color3.fromRGB(209, 0, 0);
+	G2L["kapat"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+	G2L["kapat"]["BackgroundTransparency"] = 0.2;
+	G2L["kapat"]["Size"] = UDim2.new(0, 40, 1, 0);
+	G2L["kapat"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+	G2L["kapat"]["Text"] = [[x]];
+	G2L["kapat"]["Name"] = [[kapat]];
+	G2L["kapat"]["Position"] = UDim2.new(0.23043, 0, 0.15, 0);
+	G2L["kapat"]["Position"] = UDim2.new(0.5778, 0, -0.01667, 0);
+	
 	Sekme["1"] = Instance.new("Frame", G2L["2"])
 	Sekme["1"].BorderSizePixel = 0
 	Sekme["1"].Name = "ana-sayfa"
@@ -469,3 +506,25 @@ else
 	G2L["6"].Visible = true
 	openFrame("1")
 end
+
+UserInputService.InputBegan:Connect(function(input, processed)
+	if processed then return end
+	if input.UserInputType == Enum.UserInputType.Keyboard then
+		if input.KeyCode == Enum.KeyCode.Home or input.KeyCode == Enum.KeyCode.RightControl then
+			if not G2L["2"].Visible and G2L["4"].Visible == false then
+				G2L["2"].Visible = true
+				G2L["6"].Visible = true
+				openFrame("1")
+			end
+		end
+	end
+end)
+
+
+G2L["kucult"].MouseButton1Click:Connect(function()
+	G2L["2"].Visible = false
+end)
+
+G2L["kapat"].MouseButton1Click:Connect(function()
+	G2L["1"]:Destroy()
+end)
