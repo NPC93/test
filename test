@@ -10,6 +10,7 @@ G2L["1"] = Instance.new("ScreenGui", LocalPlayer:WaitForChild("PlayerGui"))
 G2L["1"].Name = "test"
 G2L["1"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 G2L["1"].SelectionGroup = true
+G2L["1"].ResetOnSpawn = false
 
 G2L["2"] = Instance.new("Frame", G2L["1"])
 G2L["2"].Name = "Main"
@@ -99,8 +100,11 @@ G2L["9"].Position = UDim2.new(0.15,0,0.1,0)
 Sekme["1"] = Instance.new("Frame", G2L["2"])
 Sekme["1"].BorderSizePixel = 0
 Sekme["1"].Name = "ana-sayfa"
-Sekme["1"].Size = UDim2.new(1,1,1)
-Sekme["1"].BackgroundTransparency = 0.1
+Sekme["1"].Transparency = 1
+Sekme["1"].AnchorPoint = Vector2.new(0.5, 0.5)
+Sekme["1"].Size = UDim2.new(1, 0, 0.88563, 0);
+Sekme["1"].Position = UDim2.new(0.49962, 0, 0.49853, 0);
+Sekme["1"].BackgroundTransparency = 1
 Sekme["1"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
 Sekme["1"].Visible = false
 
@@ -126,8 +130,6 @@ thumbaildisplayname["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 thumbaildisplayname["Name"] = "displayname";
 thumbaildisplayname["Position"] = UDim2.new(0.30216, 0, 0.09971, 0);
 
-
--- ServerStorage.test.Main.ana-sayfa.name
 local thumbailname = Instance.new("TextLabel", Sekme["1"]);
 thumbailname["BorderSizePixel"] = 0;
 thumbailname["TextSize"] = 14;
@@ -144,8 +146,11 @@ thumbailname["Position"] = UDim2.new(0.30216, 0, 0.20235, 0);
 Sekme["2"] = Instance.new("Frame", G2L["2"])
 Sekme["2"].BorderSizePixel = 0
 Sekme["2"].Name = "local"
-Sekme["2"].Size = UDim2.new(1,1,1)
-Sekme["2"].BackgroundTransparency = 0.1
+Sekme["2"].Transparency = 1
+Sekme["2"].AnchorPoint = Vector2.new(0.5, 0.5)
+Sekme["2"].Size = UDim2.new(1, 0, 0.88563, 0);
+Sekme["2"].Position = UDim2.new(0.49962, 0, 0.49853, 0);
+Sekme["2"].BackgroundTransparency = 1
 Sekme["2"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
 Sekme["2"].Visible = false
 
@@ -167,6 +172,55 @@ local content, isReady = PlayersService:GetUserThumbnailAsync(
 	thumbnailType,
 	thumbnailSize
 )
+
+local function tus1ekle(parent, labelText, boxPlaceholder)
+	local label = Instance.new("TextLabel")
+	label.Name = "tus1Label"
+	label.Size = UDim2.new(0, 100, 0, 25)
+	label.BackgroundTransparency = 0.2
+	label.BackgroundColor3 = Color3.fromRGB(61,61,61)
+	label.TextColor3 = Color3.fromRGB(255,255,255)
+	label.Text = labelText or "Label"
+	label.Parent = parent
+
+	local box = Instance.new("TextBox")
+	box.Name = "tus1Box"
+	box.Text = ""
+	box.Size = UDim2.new(0, 150, 0, 25)
+	box.Position = UDim2.new(0, 110, 0, 0)
+	box.BackgroundTransparency = 0.2
+	box.BackgroundColor3 = Color3.fromRGB(40,40,40)
+	box.TextColor3 = Color3.fromRGB(255,255,255)
+	box.PlaceholderText = boxPlaceholder or "Buraya yaz..."
+	box.Parent = parent
+
+	task.spawn(function()
+		while box.Parent do
+			local char = player.Character
+			if char and char:FindFirstChild("Humanoid") and not box:IsFocused() then
+				box.PlaceholderText = tostring(char.Humanoid.WalkSpeed)
+			end
+			task.wait(0.2)
+		end
+	end)
+
+	box.FocusLost:Connect(function(enterPressed)
+		local char = player.Character
+		if char and char:FindFirstChild("Humanoid") then
+			local val = tonumber(box.Text)
+			if val then
+				char.Humanoid.WalkSpeed = val
+			else
+				box.PlaceholderText = tostring(char.Humanoid.WalkSpeed)
+			end
+		end
+	end)
+
+	return label, box
+end
+
+
+tus1ekle(Sekme["2"], "Speed", player.Character.Humanoid.WalkSpeed)
 
 imageLabel.Image = content
 name.Text = player.Name
@@ -211,7 +265,6 @@ local function openFrame(name)
 	end
 	if Sekme[name] then
 		Sekme[name].Visible = true
-		G2L["2"].Transparency = 1
 	end
 end
 
