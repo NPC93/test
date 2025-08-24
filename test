@@ -6,163 +6,184 @@ local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
-G2L["1"] = Instance.new("ScreenGui", LocalPlayer:WaitForChild("PlayerGui"))
-G2L["1"].Name = "test"
-G2L["1"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-G2L["1"].SelectionGroup = true
-G2L["1"].ResetOnSpawn = false
+-- Check if the GUI already exists
+local PlayersGui = LocalPlayer:WaitForChild("PlayerGui")
+local guiExists = PlayersGui:FindFirstChild("npcgui")
 
-G2L["2"] = Instance.new("Frame", G2L["1"])
-G2L["2"].Name = "Main"
-G2L["2"].BorderSizePixel = 0
-G2L["2"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-G2L["2"].AnchorPoint = Vector2.new(0.5, 0.5)
-G2L["2"].Size = UDim2.new(0, 556, 0, 341)
-G2L["2"].Position = UDim2.new(0.49962, 0, 0.5, 0)
-G2L["2"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-G2L["2"].BackgroundTransparency = 0.1
-G2L["2"].Selectable = true
-G2L["2"].Visible = false
+if not guiExists then
+	G2L["1"] = Instance.new("ScreenGui", PlayersGui)
+	G2L["1"].Name = "npcgui"
+	G2L["1"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	G2L["1"].SelectionGroup = true
+	G2L["1"].ResetOnSpawn = false
 
-G2L["3"] = Instance.new("TextLabel", G2L["2"])
-G2L["3"].BorderSizePixel = 0
-G2L["3"].TextSize = 14
-G2L["3"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-G2L["3"].FontFace = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal)
-G2L["3"].TextColor3 = Color3.fromRGB(0, 0, 0)
-G2L["3"].BackgroundTransparency = 0.4
-G2L["3"].Size = UDim2.new(0, 556, 0, 36)
-G2L["3"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-G2L["3"].Text = "test"
-G2L["3"].Visible = false
+	G2L["2"] = Instance.new("Frame", G2L["1"])
+	G2L["2"].Name = "Main"
+	G2L["2"].BorderSizePixel = 0
+	G2L["2"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+	G2L["2"].AnchorPoint = Vector2.new(0.5, 0.5)
+	G2L["2"].Size = UDim2.new(0, 556, 0, 341)
+	G2L["2"].Position = UDim2.new(0.49962, 0, 0.5, 0)
+	G2L["2"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+	G2L["2"].BackgroundTransparency = 0.1
+	G2L["2"].Selectable = true
+	G2L["2"].Visible = false
 
-G2L["4"] = Instance.new("Frame", G2L["1"])
-G2L["4"].Name = "Loading"
-G2L["4"].BorderSizePixel = 0
-G2L["4"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-G2L["4"].AnchorPoint = Vector2.new(0.5, 0.5)
-G2L["4"].Size = UDim2.new(0, 264, 0, 341)
-G2L["4"].Position = UDim2.new(0.49994, 0, 0.5, 0)
-G2L["4"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-G2L["4"].BackgroundTransparency = 0.1
-G2L["4"].Selectable = true
-G2L["4"].Visible = false
+	G2L["3"] = Instance.new("TextLabel", G2L["2"])
+	G2L["3"].BorderSizePixel = 0
+	G2L["3"].TextSize = 14
+	G2L["3"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+	G2L["3"].FontFace = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+	G2L["3"].TextColor3 = Color3.fromRGB(0, 0, 0)
+	G2L["3"].BackgroundTransparency = 0.4
+	G2L["3"].Size = UDim2.new(0, 556, 0, 36)
+	G2L["3"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+	G2L["3"].Text = "test"
+	G2L["3"].Visible = false
 
-G2L["5"] = Instance.new("ImageLabel", G2L["4"])
-G2L["5"].BorderSizePixel = 0
-G2L["5"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-G2L["5"].Image = "rbxassetid://275671230"
-G2L["5"].Size = UDim2.new(0, 100, 0, 100)
-G2L["5"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-G2L["5"].BackgroundTransparency = 1
-G2L["5"].Name = "loading"
-G2L["5"].Position = UDim2.new(0.31061, 0, 0.35191, 0)
-G2L["5"].Visible = false
+	G2L["4"] = Instance.new("Frame", G2L["1"])
+	G2L["4"].Name = "Loading"
+	G2L["4"].BorderSizePixel = 0
+	G2L["4"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+	G2L["4"].AnchorPoint = Vector2.new(0.5, 0.5)
+	G2L["4"].Size = UDim2.new(0, 264, 0, 341)
+	G2L["4"].Position = UDim2.new(0.49994, 0, 0.5, 0)
+	G2L["4"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+	G2L["4"].BackgroundTransparency = 0.1
+	G2L["4"].Selectable = true
+	G2L["4"].Visible = false
 
-G2L["6"] = Instance.new("Frame", G2L["2"])
-G2L["6"].Name = "Sekme"
-G2L["6"].BorderSizePixel = 0
-G2L["6"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-G2L["6"].AnchorPoint = Vector2.new(0.5, 0.5)
-G2L["6"].Size = UDim2.new(0, 555, 0, 30)
-G2L["6"].Position = UDim2.new(0.49782, 0, -0.06274, 0)
-G2L["6"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-G2L["6"].BackgroundTransparency = 0.1
-G2L["6"].Visible = false
+	G2L["5"] = Instance.new("ImageLabel", G2L["4"])
+	G2L["5"].BorderSizePixel = 0
+	G2L["5"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	G2L["5"].Image = "rbxassetid://275671230"
+	G2L["5"].Size = UDim2.new(0, 100, 0, 100)
+	G2L["5"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+	G2L["5"].BackgroundTransparency = 1
+	G2L["5"].Name = "loading"
+	G2L["5"].Position = UDim2.new(0.31061, 0, 0.35191, 0)
+	G2L["5"].Visible = false
 
-G2L["8"] = Instance.new("UIListLayout", G2L["6"])
-G2L["8"].HorizontalAlignment = Enum.HorizontalAlignment.Center
-G2L["8"].VerticalAlignment = Enum.VerticalAlignment.Center
-G2L["8"].Padding = UDim.new(0, 4)
-G2L["8"].SortOrder = Enum.SortOrder.LayoutOrder
-G2L["8"].FillDirection = Enum.FillDirection.Horizontal
+	G2L["6"] = Instance.new("Frame", G2L["2"])
+	G2L["6"].Name = "Sekme"
+	G2L["6"].BorderSizePixel = 0
+	G2L["6"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+	G2L["6"].AnchorPoint = Vector2.new(0.5, 0.5)
+	G2L["6"].Size = UDim2.new(0, 555, 0, 30)
+	G2L["6"].Position = UDim2.new(0.49782, 0, -0.06274, 0)
+	G2L["6"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+	G2L["6"].BackgroundTransparency = 0.1
+	G2L["6"].Visible = false
 
-G2L["7"] = Instance.new("TextButton", G2L["6"])
-G2L["7"].BorderSizePixel = 0
-G2L["7"].Name = "ana-sayfa-btn"
-G2L["7"].Text = "Ana Sayfa"
-G2L["7"].Size = UDim2.new(0, 107, 0, 21)
-G2L["7"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-G2L["7"].TextColor3 = Color3.fromRGB(0,0,0)
-G2L["7"].BackgroundTransparency = 0.2
-G2L["7"].Position = UDim2.new(0.02,0,0.1,0)
+	G2L["7"] = Instance.new("TextButton", G2L["6"])
+	G2L["7"].BorderSizePixel = 0
+	G2L["7"].Name = "ana-sayfa-btn"
+	G2L["7"].Text = "Ana Sayfa"
+	G2L["7"].Size = UDim2.new(0, 107, 0, 21)
+	G2L["7"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+	G2L["7"].TextColor3 = Color3.fromRGB(0,0,0)
+	G2L["7"].BackgroundTransparency = 0.2
+	G2L["7"].Position = UDim2.new(0.02,0,0.1,0)
 
-G2L["9"] = Instance.new("TextButton", G2L["6"])
-G2L["9"].BorderSizePixel = 0
-G2L["9"].Name = "local-btn"
-G2L["9"].Text = "Local"
-G2L["9"].Size = UDim2.new(0, 107, 0, 21)
-G2L["9"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-G2L["9"].TextColor3 = Color3.fromRGB(0,0,0)
-G2L["9"].BackgroundTransparency = 0.2
-G2L["9"].Position = UDim2.new(0.15,0,0.1,0)
+	G2L["9"] = Instance.new("TextButton", G2L["6"])
+	G2L["9"].BorderSizePixel = 0
+	G2L["9"].Name = "local-btn"
+	G2L["9"].Text = "Local"
+	G2L["9"].Size = UDim2.new(0, 107, 0, 21)
+	G2L["9"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+	G2L["9"].TextColor3 = Color3.fromRGB(0,0,0)
+	G2L["9"].BackgroundTransparency = 0.2
+	G2L["9"].Position = UDim2.new(0.15,0,0.1,0)
 
-Sekme["1"] = Instance.new("Frame", G2L["2"])
-Sekme["1"].BorderSizePixel = 0
-Sekme["1"].Name = "ana-sayfa"
-Sekme["1"].Transparency = 1
-Sekme["1"].AnchorPoint = Vector2.new(0.5, 0.5)
-Sekme["1"].Size = UDim2.new(1, 0, 0.88563, 0);
-Sekme["1"].Position = UDim2.new(0.49962, 0, 0.49853, 0);
-Sekme["1"].BackgroundTransparency = 1
-Sekme["1"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-Sekme["1"].Visible = false
+	Sekme["1"] = Instance.new("Frame", G2L["2"])
+	Sekme["1"].BorderSizePixel = 0
+	Sekme["1"].Name = "ana-sayfa"
+	Sekme["1"].Transparency = 1
+	Sekme["1"].AnchorPoint = Vector2.new(0.5, 0.5)
+	Sekme["1"].Size = UDim2.new(1, 0, 0.88563, 0);
+	Sekme["1"].Position = UDim2.new(0.49962, 0, 0.49853, 0);
+	Sekme["1"].BackgroundTransparency = 1
+	Sekme["1"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+	Sekme["1"].Visible = false
 
-local thumbail = Instance.new("ImageLabel", Sekme["1"]);
-thumbail["BorderSizePixel"] = 0;
-thumbail["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-thumbail["Image"] = [[rbxasset://textures/ui/GuiImagePlaceholder.png]];
-thumbail["Size"] = UDim2.new(0, 120, 0, 120);
-thumbail["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-thumbail["BackgroundTransparency"] = 1;
-thumbail["Position"] = UDim2.new(0.04317, 0, 0.05865, 0);
+	local thumbail = Instance.new("ImageLabel", Sekme["1"]);
+	thumbail["BorderSizePixel"] = 0;
+	thumbail["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+	thumbail["Image"] = [[rbxasset://textures/ui/GuiImagePlaceholder.png]];
+	thumbail["Size"] = UDim2.new(0, 120, 0, 120);
+	thumbail["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+	thumbail["BackgroundTransparency"] = 1;
+	thumbail["Position"] = UDim2.new(0.04317, 0, 0.05865, 0);
 
-local thumbaildisplayname = Instance.new("TextLabel", Sekme["1"]);
-thumbaildisplayname["BorderSizePixel"] = 0;
-thumbaildisplayname["TextSize"] = 14;
-thumbaildisplayname["TextXAlignment"] = Enum.TextXAlignment.Left;
-thumbaildisplayname["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-thumbaildisplayname["FontFace"] = Font.new([[rbxassetid://11322590111]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-thumbaildisplayname["TextColor3"] = Color3.fromRGB(255, 255, 255);
-thumbaildisplayname["BackgroundTransparency"] = 1;
-thumbaildisplayname["Size"] = UDim2.new(0, 173, 0, 22);
-thumbaildisplayname["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-thumbaildisplayname["Name"] = "displayname";
-thumbaildisplayname["Position"] = UDim2.new(0.30216, 0, 0.09971, 0);
+	local thumbaildisplayname = Instance.new("TextLabel", Sekme["1"]);
+	thumbaildisplayname["BorderSizePixel"] = 0;
+	thumbaildisplayname["TextSize"] = 14;
+	thumbaildisplayname["TextXAlignment"] = Enum.TextXAlignment.Left;
+	thumbaildisplayname["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+	thumbaildisplayname["FontFace"] = Font.new([[rbxassetid://11322590111]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+	thumbaildisplayname["TextColor3"] = Color3.fromRGB(255, 255, 255);
+	thumbaildisplayname["BackgroundTransparency"] = 1;
+	thumbaildisplayname["Size"] = UDim2.new(0, 173, 0, 22);
+	thumbaildisplayname["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+	thumbaildisplayname["Name"] = "displayname";
+	thumbaildisplayname["Position"] = UDim2.new(0.30216, 0, 0.09971, 0);
 
-local thumbailname = Instance.new("TextLabel", Sekme["1"]);
-thumbailname["BorderSizePixel"] = 0;
-thumbailname["TextSize"] = 14;
-thumbailname["TextXAlignment"] = Enum.TextXAlignment.Left;
-thumbailname["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-thumbailname["FontFace"] = Font.new([[rbxassetid://11322590111]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-thumbailname["TextColor3"] = Color3.fromRGB(255, 255, 255);
-thumbailname["BackgroundTransparency"] = 1;
-thumbailname["Size"] = UDim2.new(0, 173, 0, 22);
-thumbailname["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-thumbailname["Name"] = "name";
-thumbailname["Position"] = UDim2.new(0.30216, 0, 0.20235, 0);
+	local thumbailname = Instance.new("TextLabel", Sekme["1"]);
+	thumbailname["BorderSizePixel"] = 0;
+	thumbailname["TextSize"] = 14;
+	thumbailname["TextXAlignment"] = Enum.TextXAlignment.Left;
+	thumbailname["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+	thumbailname["FontFace"] = Font.new([[rbxassetid://11322590111]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+	thumbailname["TextColor3"] = Color3.fromRGB(255, 255, 255);
+	thumbailname["BackgroundTransparency"] = 1;
+	thumbailname["Size"] = UDim2.new(0, 173, 0, 22);
+	thumbailname["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+	thumbailname["Name"] = "name";
+	thumbailname["Position"] = UDim2.new(0.30216, 0, 0.20235, 0);
 
-Sekme["2"] = Instance.new("Frame", G2L["2"])
-Sekme["2"].BorderSizePixel = 0
-Sekme["2"].Name = "local"
-Sekme["2"].Transparency = 1
-Sekme["2"].AnchorPoint = Vector2.new(0.5, 0.5)
-Sekme["2"].Size = UDim2.new(1, 0, 0.88563, 0);
-Sekme["2"].Position = UDim2.new(0.49962, 0, 0.49853, 0);
-Sekme["2"].BackgroundTransparency = 1
-Sekme["2"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
-Sekme["2"].Visible = false
+	Sekme["2"] = Instance.new("Frame", G2L["2"])
+	Sekme["2"].BorderSizePixel = 0
+	Sekme["2"].Name = "local"
+	Sekme["2"].Transparency = 1
+	Sekme["2"].AnchorPoint = Vector2.new(0.5, 0.5)
+	Sekme["2"].Size = UDim2.new(1, 0, 0.88563, 0);
+	Sekme["2"].Position = UDim2.new(0.49962, 0, 0.49853, 0);
+	Sekme["2"].BackgroundTransparency = 1
+	Sekme["2"].BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+	Sekme["2"].Visible = false
 
-local Players = game:GetService("Players")
-local PlayersGui = Players.LocalPlayer:WaitForChild("PlayerGui")
+	local uiListLayout1 = Instance.new("UIListLayout", G2L["6"])
+	uiListLayout1.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	uiListLayout1.VerticalAlignment = Enum.VerticalAlignment.Center
+	uiListLayout1.Padding = UDim.new(0, 10)
+	uiListLayout1.SortOrder = Enum.SortOrder.LayoutOrder
+	uiListLayout1.FillDirection = Enum.FillDirection.Horizontal
 
-local imageLabel = Sekme["1"].ImageLabel
-local displayname = Sekme["1"].displayname
-local name = Sekme["1"].name
+	local uiListLayout2 = Instance.new("UIListLayout", Sekme["2"])
+	uiListLayout2.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	uiListLayout2.VerticalAlignment = Enum.VerticalAlignment.Top
+	uiListLayout2.Padding = UDim.new(0, 10)
+	uiListLayout2.SortOrder = Enum.SortOrder.LayoutOrder
+else
+	G2L["1"] = guiExists
+	G2L["2"] = G2L["1"]:WaitForChild("Main")
+	G2L["3"] = G2L["2"]:WaitForChild("TextLabel")
+	G2L["4"] = G2L["1"]:WaitForChild("Loading")
+	G2L["5"] = G2L["4"]:WaitForChild("loading")
+	G2L["6"] = G2L["2"]:WaitForChild("Sekme")
+	G2L["7"] = G2L["6"]:WaitForChild("ana-sayfa-btn")
+	G2L["8"] = G2L["6"]:WaitForChild("UIListLayout")
+	G2L["9"] = G2L["6"]:WaitForChild("local-btn")
+	Sekme["1"] = G2L["2"]:WaitForChild("ana-sayfa")
+	Sekme["2"] = G2L["2"]:WaitForChild("local")
+end
+
+
+local imageLabel = Sekme["1"].ImageLabel or Sekme["1"]:FindFirstChild("ImageLabel")
+local displayname = Sekme["1"].displayname or Sekme["1"]:FindFirstChild("displayname")
+local name = Sekme["1"].name or Sekme["1"]:FindFirstChild("name")
 
 local PlayersService = game:GetService("Players")
-
 local player = Players.LocalPlayer
 local thumbnailType = Enum.ThumbnailType.HeadShot
 local thumbnailSize = Enum.ThumbnailSize.Size420x420
@@ -174,25 +195,43 @@ local content, isReady = PlayersService:GetUserThumbnailAsync(
 )
 
 local function tus1ekle(parent, labelText, boxPlaceholder)
-	local label = Instance.new("TextLabel")
-	label.Name = "tus1Label"
-	label.Size = UDim2.new(0, 100, 0, 25)
-	label.BackgroundTransparency = 0.2
-	label.BackgroundColor3 = Color3.fromRGB(61,61,61)
-	label.TextColor3 = Color3.fromRGB(255,255,255)
-	label.Text = labelText or "Label"
-	label.Parent = parent
+	local containerFrame = parent:FindFirstChild("Tus1Container")
 
-	local box = Instance.new("TextBox")
-	box.Name = "tus1Box"
-	box.Text = ""
-	box.Size = UDim2.new(0, 150, 0, 25)
-	box.Position = UDim2.new(0, 110, 0, 0)
-	box.BackgroundTransparency = 0.2
-	box.BackgroundColor3 = Color3.fromRGB(40,40,40)
-	box.TextColor3 = Color3.fromRGB(255,255,255)
+	if not containerFrame then
+		containerFrame = Instance.new("Frame")
+		containerFrame.Name = "Tus1Container"
+		containerFrame.Size = UDim2.new(0, 260, 0, 25)
+		containerFrame.BackgroundTransparency = 1
+		containerFrame.Parent = parent
+	end
+
+	local label = containerFrame:FindFirstChild("tus1Label")
+	local box = containerFrame:FindFirstChild("tus1Box")
+
+	if not label then
+		label = Instance.new("TextLabel")
+		label.Name = "tus1Label"
+		label.Size = UDim2.new(0, 100, 0, 25)
+		label.BackgroundTransparency = 0.2
+		label.BackgroundColor3 = Color3.fromRGB(61,61,61)
+		label.TextColor3 = Color3.fromRGB(255,255,255)
+		label.Parent = containerFrame
+	end
+
+	if not box then
+		box = Instance.new("TextBox")
+		box.Name = "tus1Box"
+		box.Text = ""
+		box.Size = UDim2.new(0, 150, 0, 25)
+		box.Position = UDim2.new(0, 110, 0, 0)
+		box.BackgroundTransparency = 0.2
+		box.BackgroundColor3 = Color3.fromRGB(40,40,40)
+		box.TextColor3 = Color3.fromRGB(255,255,255)
+		box.Parent = containerFrame
+	end
+
+	label.Text = labelText or "Label"
 	box.PlaceholderText = boxPlaceholder or "Buraya yaz..."
-	box.Parent = parent
 
 	task.spawn(function()
 		while box.Parent do
@@ -216,15 +255,85 @@ local function tus1ekle(parent, labelText, boxPlaceholder)
 		end
 	end)
 
-	return label, box
+	return containerFrame
 end
 
+local function tus2ekle(parent, labelText, boxPlaceholder)
+	local containerFrame = parent:FindFirstChild("Tus2Container")
 
-tus1ekle(Sekme["2"], "Speed", player.Character.Humanoid.WalkSpeed)
+	if not containerFrame then
+		containerFrame = Instance.new("Frame")
+		containerFrame.Name = "Tus2Container"
+		containerFrame.Size = UDim2.new(0, 260, 0, 25)
+		containerFrame.BackgroundTransparency = 1
+		containerFrame.Parent = parent
+	end
 
-imageLabel.Image = content
-name.Text = player.Name
-displayname.Text = player.DisplayName
+	local label = containerFrame:FindFirstChild("tus2Label")
+	local box = containerFrame:FindFirstChild("tus2Box")
+
+	if not label then
+		label = Instance.new("TextLabel")
+		label.Name = "tus2Label"
+		label.Size = UDim2.new(0, 100, 0, 25)
+		label.BackgroundTransparency = 0.2
+		label.BackgroundColor3 = Color3.fromRGB(61,61,61)
+		label.TextColor3 = Color3.fromRGB(255,255,255)
+		label.Parent = containerFrame
+	end
+
+	if not box then
+		box = Instance.new("TextBox")
+		box.Name = "tus2Box"
+		box.Text = ""
+		box.Size = UDim2.new(0, 150, 0, 25)
+		box.Position = UDim2.new(0, 110, 0, 0)
+		box.BackgroundTransparency = 0.2
+		box.BackgroundColor3 = Color3.fromRGB(40,40,40)
+		box.TextColor3 = Color3.fromRGB(255,255,255)
+		box.Parent = containerFrame
+	end
+
+	label.Text = labelText or "Label"
+	box.PlaceholderText = boxPlaceholder or "Buraya yaz..."
+
+	task.spawn(function()
+		while box.Parent do
+			local char = player.Character
+			if char and char:FindFirstChild("Humanoid") and not box:IsFocused() then
+				box.PlaceholderText = tostring(char.Humanoid.JumpPower)
+			end
+			task.wait(0.2)
+		end
+	end)
+
+	box.FocusLost:Connect(function(enterPressed)
+		local char = player.Character
+		if char and char:FindFirstChild("Humanoid") then
+			local val = tonumber(box.Text)
+			if val then
+				char.Humanoid.JumpPower = val
+			else
+				box.PlaceholderText = tostring(char.Humanoid.JumpPower)
+			end
+		end
+	end)
+
+	return containerFrame
+end
+
+tus1ekle(Sekme["2"], "Speed", player.Character and player.Character.Humanoid and player.Character.Humanoid.WalkSpeed or "")
+tus2ekle(Sekme["2"], "JumpPower", player.Character and player.Character.Humanoid and player.Character.Humanoid.JumpPower or "")
+
+if imageLabel then
+	imageLabel.Image = content
+end
+if name then
+	name.Text = player.Name
+end
+if displayname then
+	displayname.Text = player.DisplayName
+end
 
 local function makeDraggable(frame)
 	local dragToggle, dragStart, startPos
@@ -276,44 +385,51 @@ G2L["9"].MouseButton1Click:Connect(function()
 	openFrame("2")
 end)
 
-task.spawn(function()
-	local loading = true
+if not guiExists then
 	task.spawn(function()
-		while loading do
-			RunService.RenderStepped:Wait()
-			if G2L["5"].Visible then
-				G2L["5"].Rotation = (G2L["5"].Rotation + 1) % 360
+		local loading = true
+		task.spawn(function()
+			while loading do
+				RunService.RenderStepped:Wait()
+				if G2L["5"].Visible then
+					G2L["5"].Rotation = (G2L["5"].Rotation + 1) % 360
+				end
 			end
-		end
-	end)
-	wait(2)
-	G2L["4"].Visible = true
-	G2L["4"].BackgroundTransparency = 1
-	TweenService:Create(G2L["4"], TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {BackgroundTransparency = 0.1}):Play()
-	G2L["5"].Visible = true
-	G2L["5"].ImageTransparency = 1
-	local w = TweenService:Create(G2L["5"], TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {ImageTransparency = 0})
-	w:Play()
-	w.Completed:Wait()
+		end)
+		wait(2)
+		G2L["4"].Visible = true
+		G2L["4"].BackgroundTransparency = 1
+		TweenService:Create(G2L["4"], TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {BackgroundTransparency = 0.1}):Play()
+		G2L["5"].Visible = true
+		G2L["5"].ImageTransparency = 1
+		local w = TweenService:Create(G2L["5"], TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {ImageTransparency = 0})
+		w:Play()
+		w.Completed:Wait()
 
-	task.delay(math.random(5,10), function()
-		TweenService:Create(G2L["4"], TweenInfo.new(2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
-		local t2 = TweenService:Create(G2L["5"], TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {ImageTransparency = 1})
-		t2:Play()
-		t2.Completed:Wait()
-		G2L["5"].Visible = false
-		G2L["4"].Visible = false
-		loading = false
+		task.delay(math.random(5,10), function()
+			TweenService:Create(G2L["4"], TweenInfo.new(2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {BackgroundTransparency = 1}):Play()
+			local t2 = TweenService:Create(G2L["5"], TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {ImageTransparency = 1})
+			t2:Play()
+			t2.Completed:Wait()
+			G2L["5"].Visible = false
+			G2L["4"].Visible = false
+			loading = false
 
-		G2L["2"].BackgroundTransparency = 1
-		G2L["2"].Visible = true
-		G2L["6"].Visible = true
-		local originalPos = G2L["2"].Position
-		G2L["2"].Position = originalPos + UDim2.new(0,0,0,50)
-		TweenService:Create(G2L["2"], TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {BackgroundTransparency = 0.1, Position = originalPos}):Play()
+			G2L["2"].BackgroundTransparency = 1
+			G2L["2"].Visible = true
+			G2L["6"].Visible = true
+			local originalPos = G2L["2"].Position
+			G2L["2"].Position = originalPos + UDim2.new(0,0,0,50)
+			TweenService:Create(G2L["2"], TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {BackgroundTransparency = 0.1, Position = originalPos}):Play()
 
-		task.delay(1.5, function()
-			openFrame("1")
+			task.delay(1.5, function()
+				openFrame("1")
+			end)
 		end)
 	end)
-end)
+else
+	G2L["4"].Visible = false
+	G2L["2"].Visible = true
+	G2L["6"].Visible = true
+	openFrame("1")
+end
